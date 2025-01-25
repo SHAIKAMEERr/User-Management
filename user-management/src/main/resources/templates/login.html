@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        *, ::after, ::before {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #212121;
+            color: #fff;
+            font-family: monospace, serif;
+            letter-spacing: 0.05em;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 23px;
+        }
+
+        .form {
+            width: 300px;
+            padding: 64px 15px 24px;
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .control {
+            margin: 0 0 24px;
+        }
+
+        .control input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font-family: monospace, serif;
+            letter-spacing: 0.05em;
+            font-size: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 4px;
+            transition: border-color 0.2s;
+        }
+
+        .control input:hover,
+        .control input:focus {
+            outline: none;
+            border-color: rgba(0, 212, 255, 1);
+        }
+
+        .btn {
+            width: 100%;
+            display: block;
+            padding: 14px 16px;
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(52, 9, 121, 1) 37%, rgba(0, 212, 255, 1) 94%);
+            outline: none;
+            border: 0;
+            color: #fff;
+            letter-spacing: 0.1em;
+            font-weight: bold;
+            font-family: monospace;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, rgba(0, 212, 255, 1) 0%, rgba(52, 9, 121, 1) 57%, rgba(2, 0, 36, 1) 94%);
+        }
+
+        .credits {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .credits a {
+            opacity: 0.6;
+            color: #fff;
+            font-size: 11px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .credits a:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <form class="form" autocomplete="off">
+        <div class="control">
+            <h1>Sign In</h1>
+        </div>
+        <div class="control">
+            <input name="username" type="text" placeholder="Username" />
+        </div>
+        <div class="control">
+            <input name="password" type="password" placeholder="Password" />
+        </div>
+        <button class="btn" type="button">Log In</button>
+        
+    </form>
+</body>
+</html>

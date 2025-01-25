@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,9 +27,11 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
     private final UserService userService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, BCryptPasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping
@@ -36,6 +39,10 @@ public class UserController {
         log.info("Received request to create user: {}", userRequestDTO);
 
         try {
+            // Hash the password before passing it to the service
+            String hashedPassword = passwordEncoder.encode(userRequestDTO.getPassword());
+            userRequestDTO.setPassword(hashedPassword);
+
             // Call service to create user
             UserResponseDTO createdUser = userService.createUser(userRequestDTO);
 
@@ -61,25 +68,17 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id) {
-    	
         log.info("Fetching user with ID: {}", id);
-        
         UserResponseDTO user = userService.getUserById(id);
-        
         log.info("User fetched successfully: {}", user);
-        
         return ResponseEntity.ok(user);
     }
 
     @GetMapping
     public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
-    	
         log.info("Fetching all users");
-        
         List<UserResponseDTO> users = userService.getAllUsers();
-        
         log.info("Users fetched successfully: {}", users);
-        
         return ResponseEntity.ok(users);
     }
 }
